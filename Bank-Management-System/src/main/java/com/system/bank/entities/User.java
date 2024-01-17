@@ -26,22 +26,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotBlank(message = "username cannot be blank")
+    @NotBlank(message = "User Name cannot be blank")
     private String username;
     
-    @NotBlank(message = "username cannot be blank")
+    @NotBlank(message = "Full Name cannot be blank")
     private String fullname;
 
-    @NotBlank(message = "username cannot be blank")
+    @NotBlank(message = "Pin cannot be blank")
     private String pin;    
 
-    @NotBlank(message = "email cannot be blank")
+    @NotBlank(message = "Email cannot be blank")
     @Email
     private String email;
    
-    @NotBlank(message = "phone number cannot be blank")
+    @NotBlank(message = "Phone number cannot be blank")
     private String phoneNumber;
 
+    @NotBlank(message = "Aadhaar Number cannot be blank")
+    private String aadhaarnumber;
    
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Account> accounts = new ArrayList<>();
