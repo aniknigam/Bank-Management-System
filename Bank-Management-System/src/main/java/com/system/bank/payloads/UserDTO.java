@@ -25,6 +25,7 @@ public class UserDTO {
 
     @NotBlank(message = "Pin cannot be blank")
     private String pin;    
+    
 
     @NotBlank(message = "Email cannot be blank")
     @Email

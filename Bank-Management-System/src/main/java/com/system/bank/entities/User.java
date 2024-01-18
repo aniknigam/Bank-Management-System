@@ -32,8 +32,9 @@ public class User {
     @NotBlank(message = "Full Name cannot be blank")
     private String fullname;
 
-    @NotBlank(message = "Pin cannot be blank")
+    @NotBlank(message = "Password cannot be blank")
     private String pin;    
+
 
     @NotBlank(message = "Email cannot be blank")
     @Email

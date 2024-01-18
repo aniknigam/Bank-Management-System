@@ -1,7 +1,10 @@
 package com.system.bank.service.serviceimpl;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,7 @@ import com.system.bank.entities.TransactionType;
 import com.system.bank.exception.InsufficientBalanceException;
 import com.system.bank.exception.ResourceNotFoundException;
 import com.system.bank.payloads.AmountRequest;
+
 import com.system.bank.repository.AccountRepo;
 import com.system.bank.repository.TransactionRepo;
 import com.system.bank.service.TransactionService;
@@ -24,6 +28,9 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Autowired
 	private TransactionRepo transactionrepo;
+	
+	@Autowired
+	private ModelMapper modelmapper;
 
 	@Override
 	@JsonProperty("amount")
@@ -96,6 +103,17 @@ public class TransactionServiceImpl implements TransactionService {
 		this.accountrepo.save(account);
 
 		createTransaction(account, amount, TransactionType.DEPOSIT);
+	}
+
+	@Override
+	public List<Transaction> transactionHistory(String accountId) {
+		 Account account = accountrepo.findByAccountNumber(accountId)
+	                .orElseThrow(() -> new ResourceNotFoundException("Account", "account number", accountId));
+
+	     List<Transaction> transactions = transactionrepo.findByAccountOrderByCreatedAtDesc(account);
+	     
+	    
+		return transactions;
 	}
 
 }

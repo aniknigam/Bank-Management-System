@@ -36,7 +36,7 @@ public class Account {
     private String accountNumber;
     
     
-    private Double balance;
+    private Double balance = 0.0;
 
     // Other account attributes (e.g., balance, type, etc.)
 

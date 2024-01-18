@@ -23,7 +23,7 @@ public class AccountServiceImpl implements AccountService {
 	    Account acc = this.accountrepo.findByAccountNumber(accountId)
 	            .orElseThrow(() -> new ResourceNotFoundException("User", "Id", accountId));
 	    Double balanceStr = acc.getBalance();
-	    return (balanceStr); 
+	    return balanceStr; 
 	}
 
 }
